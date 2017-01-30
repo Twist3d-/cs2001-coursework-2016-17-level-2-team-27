@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">TurnUp</string>
+    <string name="title_activity_sign_up2">SignUpActivity2</string>
+    <string name="title_activity_log_in">LogInActivity</string>
+</resources>
