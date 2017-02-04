@@ -8,7 +8,9 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.turnup.turnup.SignUpActivity">
+    tools:context="com.turnup.turnup.SignUpActivity"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -41,7 +43,9 @@
                 android:layout_alignStart="@+id/studentIdEditText"
                 android:layout_marginTop="20dp"
                 android:id="@+id/emailIdEditText"
-                android:hint="Brunel_Email@my.brunel.ac.uk" />
+                android:hint="Brunel_Email@my.brunel.ac.uk"
+                android:focusable="true"
+                android:focusableInTouchMode="true"/>
 
             <EditText
                 android:layout_width="match_parent"
@@ -127,7 +131,7 @@
                 android:id="@+id/signUpButton"
                 android:layout_below="@+id/passwordEditText"
                 android:layout_centerHorizontal="true"
-                android:onClick="SignUpMethod (SignUpActivity)"
+                android:onClick="SignUpMethod"
                 android:layout_marginTop="20dp"
                 android:layout_gravity="center" />
         </LinearLayout>

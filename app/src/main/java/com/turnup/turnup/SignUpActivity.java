@@ -22,7 +22,8 @@ public class SignUpActivity extends AppCompatActivity {
 
     //-------------------------------------------------------------------------
 
-    //public String firstName, lastName, studentId, emailId, cardId, password;
+    // Variables for storing the user information
+
     public EditText firstNameEditText, lastNameEditText, studentIdEditText, studentEmailIdEditText, studentCardIdEditText, passwordEditText, courseNameEditText, courseLevelEditText;
     public String firstNameString, lastNameString, studentIdString, studentEmailIdString, studentCardIdString, passwordString, courseNameString, courseLevelString;
     public Button signUpButton;
@@ -31,6 +32,7 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+
         Backendless.initApp( this, applicationKey, androidSecurityKey, androidServerVersion );      // Initializing Backendless Server
 
         // Initializing all the content
@@ -50,6 +52,9 @@ public class SignUpActivity extends AppCompatActivity {
 
     public void SignUpMethod(View view)
     {
+        System.out.println("Reached Here");
+        Intent mainIntent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(mainIntent);
         firstNameString = firstNameEditText.getText().toString();
         lastNameString = lastNameEditText.getText().toString();
         studentIdString = studentIdEditText.getText().toString();
@@ -60,23 +65,20 @@ public class SignUpActivity extends AppCompatActivity {
         courseLevelString = courseLevelEditText.getText().toString();
     }
 
-    public void UserRegistration()
-    {
-    
 
+    //---------------------------------------------------------
+    //This method will register user
+    public void UserRegistration(){
         BackendlessUser user = new BackendlessUser();
-        user.setProperty( "email", "james.bond@mi6.co.uk" );
-        user.setPassword( "iAmWatchingU" );
+        user.setProperty("email", studentEmailIdString);
+        user.setPassword(passwordString);
 
-        Backendless.UserService.register( user, new AsyncCallback<BackendlessUser>()
-        {
-            public void handleResponse( BackendlessUser registeredUser )
-            {
-                System.out.println("Successfull.!");
+        Backendless.UserService.register( user, new AsyncCallback<BackendlessUser>(){
+            public void handleResponse(BackendlessUser registeredUser){
+                System.out.println("Successfully Registered");
             }
 
-            public void handleFault( BackendlessFault fault )
-            {
+            public void handleFault(BackendlessFault fault){
                 System.out.println("Error");
             }
         } );
