@@ -24,8 +24,12 @@ public class SignUpActivity extends AppCompatActivity {
 
     // Variables for storing the user information
 
-    public EditText firstNameEditText, lastNameEditText, studentIdEditText, studentEmailIdEditText, studentCardIdEditText, passwordEditText, courseNameEditText, courseLevelEditText;
-    public String firstNameString, lastNameString, studentIdString, studentEmailIdString, studentCardIdString, passwordString, courseNameString, courseLevelString;
+    public EditText firstNameEditText, lastNameEditText, studentIdEditText, studentEmailIdEditText,
+            studentCardIdEditText, passwordEditText, courseNameEditText, courseLevelEditText;
+
+    public String firstNameString, lastNameString, studentIdString, studentEmailIdString,
+            studentCardIdString, passwordString, courseNameString, courseLevelString;
+
     public Button signUpButton;
 
     @Override
@@ -55,24 +59,46 @@ public class SignUpActivity extends AppCompatActivity {
         System.out.println("Reached Here");
         Intent mainIntent = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(mainIntent);
-        firstNameString = firstNameEditText.getText().toString();
-        lastNameString = lastNameEditText.getText().toString();
-        studentIdString = studentIdEditText.getText().toString();
         studentEmailIdString = studentEmailIdEditText.getText().toString();
-        studentCardIdString = studentCardIdEditText.getText().toString();
         passwordString = passwordEditText.getText().toString();
+        studentIdString = studentIdEditText.getText().toString();
+        studentCardIdString = studentCardIdEditText.getText().toString();
         courseNameString = courseNameEditText.getText().toString();
         courseLevelString = courseLevelEditText.getText().toString();
+        firstNameString = firstNameEditText.getText().toString();
+        lastNameString = lastNameEditText.getText().toString();
+
+        UserRegistration();
     }
 
 
     //---------------------------------------------------------
     //This method will register user
     public void UserRegistration(){
-        BackendlessUser user = new BackendlessUser();
-        user.setProperty("email", studentEmailIdString);
-        user.setPassword(passwordString);
 
+        //String Names according to names in server "Users" Page, for convenient use, in case of server changes in future
+        String email = "email";
+        String studentID = "studentID";
+        String cardID = "cardID";
+        String courseName = "courseName";
+        String level = "level";
+        String name = "name";
+        //---------------------------------------------
+
+        BackendlessUser user = new BackendlessUser();   // Creating Backendless user.
+
+        //---------Storing User entered data to server in "Users" Page-------------
+        user.setProperty(email, studentEmailIdString);
+        user.setPassword(passwordString);
+        user.setProperty(studentID, studentIdString);
+        user.setProperty(cardID, studentCardIdString);
+        user.setProperty(courseName, courseNameString);
+        user.setProperty(level, courseLevelString);
+        user.setProperty(name, firstNameString + lastNameString);
+        //-------------------------------------------------------------------------
+
+
+        // User Registration Call Back.
         Backendless.UserService.register( user, new AsyncCallback<BackendlessUser>(){
             public void handleResponse(BackendlessUser registeredUser){
                 System.out.println("Successfully Registered");
