@@ -9,14 +9,14 @@
 
     <!-- NFC Access Permission and NFC Hardware Access Permission -->
     <uses-permission android:name="android.permission.NFC" />
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permisson android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-feature
         android:name="android.hardware.nfc"
         android:required="true" />
 
-    <android:uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <android:uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
 
     <application
         android:allowBackup="true"
@@ -38,11 +38,25 @@
                 <action android:name="android.nfc.action.NDEF_DISCOVERED" />
 
                 <category android:name="android.intent.category.DEFAULT" />
-
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
-        <activity android:name=".SettingsActivity"></activity>
+        <activity android:name=".SettingsActivity">
+=======
+                <data android:mimeType="text/plain"/>
+
+        </activity>
+
+        <activity android:name=".popup"
+            android:theme="@style/AppTheme"
+            ></activity>
+        <activity android:name=".loginActivity">
+
+        </activity>
+
+
+
+>>>>>>> Stashed changes
     </application>
 
 </manifest>
