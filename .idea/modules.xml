@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/TurnUp.iml" filepath="$PROJECT_DIR$/TurnUp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/cs2001-coursework-2016-17-level-2-team-27.iml" filepath="$PROJECT_DIR$/cs2001-coursework-2016-17-level-2-team-27.iml" />
     </modules>
