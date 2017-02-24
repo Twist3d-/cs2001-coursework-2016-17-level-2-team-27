@@ -37,6 +37,14 @@
             </intent-filter>
 
          </activity>
-     </application>
+        <activity android:name=".popup"
+            android:theme="@style/AppTheme"
+            ></activity>
+        <activity android:name=".loginActivity">
+            <intent-filter>
+                <action android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+    </application>
 
  </manifest>
