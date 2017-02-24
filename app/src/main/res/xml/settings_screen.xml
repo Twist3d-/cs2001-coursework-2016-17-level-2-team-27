@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceScreen
+        android:layout_marginTop="10dp"
+        android:title="Settings"
+        android:icon="@drawable/ic_view_headline_black_24dp">
+
+        <PreferenceScreen
+            android:title="Terms and Conditions">
+            <Preference
+                android:title="Terms and Conditions"
+                android:summary="our terms and conditions are the following: etc."/>
+        </PreferenceScreen>
+
+        <PreferenceScreen
+            android:title="Privacy Policy">
+            <Preference
+                android:title="Privacy Policy"
+                android:summary="our privacy policy is the following: etc."/>
+        </PreferenceScreen>
+
+        <PreferenceScreen
+            android:title="About"
+            android:summary="about our app"
+            android:icon="@drawable/ic_info_black_24dp">
+            <Preference
+                android:title="About"
+                android:layout_width="fill_parent"
+                android:summary="Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. "/>
+        </PreferenceScreen>
+
+        <EditTextPreference
+            android:onClick="editTimetableClick"
+            android:title="Edit Timetable"
+            android:key="edit_timetable"
+            android:summary="add or remove lectures"
+            android:icon="@drawable/ic_perm_identity_black_24dp"/>
+
+        <EditTextPreference
+            android:title="Delete Account"
+            android:icon="@drawable/ic_delete_forever_black_24dp"/>
+
+        <SwitchPreference
+            android:title="Notifications"
+            android:key="switch"
+            android:icon="@drawable/ic_add_alert_black_24dp"
+            android:defaultValue="false"/>
+
+        <RingtonePreference
+            android:title="Sound"
+            android:key="notification_sound"
+            android:summary="default notification sound"
+            android:icon="@drawable/ic_alarm_black_24dp"
+            android:defaultValue="content://settings/system/notification_sound"
+            android:ringtoneType="notification"
+            android:dependency="switch"/>
+
+        <Preference
+            android:title="Support"
+            android:summary="email us at: group27@gmail.com"
+            android:icon="@drawable/ic_question_answer_black_24dp"/>
+
+    </PreferenceScreen>
+
+</PreferenceScreen>
