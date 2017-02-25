@@ -1,4 +1,20 @@
 package com.turnup.turnup;
+<<<<<<< Updated upstream
+
+/**
+ * Created by Tom on 2/24/2017.
+ */
+=======
+<<<<<<< HEAD
+>>>>>>> Stashed changes
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.support.v7.app.AppCompatActivity;
+<<<<<<< Updated upstream
+=======
+import android.os.Bundle;
+=======
 
 /**
  * Created by Tom on 2/24/2017.
@@ -7,10 +23,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+>>>>>>> tom-change
+>>>>>>> Stashed changes
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> tom-change
+>>>>>>> Stashed changes
 import com.backendless.Backendless;
 import com.backendless.BackendlessUser;
 import com.backendless.async.callback.AsyncCallback;

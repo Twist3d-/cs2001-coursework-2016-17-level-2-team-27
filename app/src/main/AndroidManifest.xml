@@ -45,6 +45,25 @@
                 <action android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+<<<<<<< Updated upstream
+=======
+
+
+
+<<<<<<< HEAD
+>>>>>>> Stashed changes
+=======
+         </activity>
+        <activity android:name=".popup"
+            android:theme="@style/AppTheme"
+            ></activity>
+        <activity android:name=".loginActivity">
+            <intent-filter>
+                <action android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+>>>>>>> tom-change
+>>>>>>> Stashed changes
     </application>
 
  </manifest>
