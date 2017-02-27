@@ -14,15 +14,15 @@ import android.widget.TextView;
 
 public class TimetableActivity extends AppCompatActivity {
 
-    private int day;
-    private String activity;
-    private String description;
-    private int start;
-    private int end;
-    private String room;
-    private String staff;
-    private String moduleNo;
-    private String chipNo;
+//    private int day;
+//    private String activity;
+//    private String description;
+//    private int start;
+//    private int end;
+//    private String room;
+//    private String staff;
+//    private String moduleNo;
+//    private String chipNo;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,41 +31,41 @@ public class TimetableActivity extends AppCompatActivity {
         init();
     }
 
-    public int getDay() {
-        return day;
-    }
-
-    public String getActivity() {
-        return activity;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public int getStart() {
-        return start;
-    }
-
-    public int getEnd() {
-        return end;
-    }
-
-    public String getRoom() {
-        return room;
-    }
-
-    public String getStaff() {
-        return staff;
-    }
-
-    public String getModuleNo() {
-        return moduleNo;
-    }
-
-    public String getChipNo() {
-        return chipNo;
-    }
+//    public int getDay() {
+//        return day;
+//    }
+//
+//    public String getActivity() {
+//        return activity;
+//    }
+//
+//    public String getDescription() {
+//        return description;
+//    }
+//
+//    public int getStart() {
+//        return start;
+//    }
+//
+//    public int getEnd() {
+//        return end;
+//    }
+//
+//    public String getRoom() {
+//        return room;
+//    }
+//
+//    public String getStaff() {
+//        return staff;
+//    }
+//
+//    public String getModuleNo() {
+//        return moduleNo;
+//    }
+//
+//    public String getChipNo() {
+//        return chipNo;
+//    }
 
 
     public void init() {
