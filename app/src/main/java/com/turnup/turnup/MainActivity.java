@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -20,8 +21,12 @@ public class MainActivity extends AppCompatActivity {
 
     // Initializing all the variables Needed
 
+    // Initializing Button
+    Button readNfcButton;
+    Button timeTableButton;
+    Button historyButton;
+    Button settingsButton;
 
-    Button readNfcButton;                      // Initializing Button
     TextView nfcTextView;                  // Initializing TextView
     ListView moduleListView;            // Initializing ListView to display upcoming modules lectures
     ImageView brunelLogoImageView;      // Initializing ImageView for Brunel University Logo
@@ -35,8 +40,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //------------------------------------------------
-        //To test if the NFC is Working or not
-        readNfcButton = (Button) findViewById(R.id.readNFCButton);
+
+        readNfcButton = (Button) findViewById(R.id.readNFCButton);  // Textview to read String from NFC, to test if the NFC is Working or not
+        timeTableButton = (Button) findViewById(R.id.timeTableButton);
+        historyButton = (Button) findViewById(R.id.historyButton);
+        settingsButton = (Button) findViewById(R.id.settingsButton);
         nfcTextView = (TextView) findViewById(R.id.nfcTextView);
         //-------------------------------------------------
 
@@ -65,9 +73,17 @@ public class MainActivity extends AppCompatActivity {
         Log.i("test",nfcTagCode);               // Printing NFC TAG Code for Verification when button is clicked
     }
 
-    public void settingsClicked(View view){
+    public void settingsButton(View view){
         Intent settingsActivityIntent = new Intent(getApplicationContext(), SettingsActivity.class);
         startActivity(settingsActivityIntent);
+    }
+    public void historyButton(View view){
+        Toast.makeText(getApplicationContext(), "Work in progress for History Screen", Toast.LENGTH_SHORT).show();
+    }
+    public void timeTableButton(View view){
+        Toast.makeText(getApplicationContext(), "Work in progress for TimeTable Screen", Toast.LENGTH_SHORT).show();
+        Intent timeTableActivityIntent = new Intent(getApplicationContext(), TimetableActivity.class);
+        startActivity(timeTableActivityIntent);
     }
 
 
@@ -79,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else{
             Log.i("test","NFC is Disabled, Enable NFC from Settings Screen");
-            finish();
+            //finish();
         }
     }
 
