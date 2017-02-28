@@ -88,8 +88,8 @@ public class MainActivity extends AppCompatActivity {
     }
     public void timeTableButton(View view){
         Toast.makeText(getApplicationContext(), "Work in progress for TimeTable Screen", Toast.LENGTH_SHORT).show();
-//        Intent timeTableActivityIntent = new Intent(getApplicationContext(), TimetableActivity.class);
-//        startActivity(timeTableActivityIntent);
+        Intent timeTableActivityIntent = new Intent(getApplicationContext(), TimetableActivity.class);
+        startActivity(timeTableActivityIntent);
     }
 
 
