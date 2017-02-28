@@ -21,8 +21,8 @@ public class MainActivity extends AppCompatActivity {
     // Initializing all the variables Needed
 
 
-    Button button;                      // Initializing Button
-    TextView textView;                  // Initializing TextView
+    Button readNfcButton;                      // Initializing Button
+    TextView nfcTextView;                  // Initializing TextView
     ListView moduleListView;            // Initializing ListView to display upcoming modules lectures
     ImageView brunelLogoImageView;      // Initializing ImageView for Brunel University Logo
 
@@ -36,8 +36,8 @@ public class MainActivity extends AppCompatActivity {
 
         //------------------------------------------------
         //To test if the NFC is Working or not
-        button = (Button) findViewById(R.id.button);
-        textView = (TextView) findViewById(R.id.textView);
+        readNfcButton = (Button) findViewById(R.id.readNFCButton);
+        nfcTextView = (TextView) findViewById(R.id.nfcTextView);
         //-------------------------------------------------
 
         moduleListView = (ListView) findViewById(R.id.moduleListView);
@@ -63,6 +63,11 @@ public class MainActivity extends AppCompatActivity {
     public void clicked(View view){
 
         Log.i("test",nfcTagCode);               // Printing NFC TAG Code for Verification when button is clicked
+    }
+
+    public void settingsClicked(View view){
+        Intent settingsActivityIntent = new Intent(getApplicationContext(), SettingsActivity.class);
+        startActivity(settingsActivityIntent);
     }
 
 
@@ -98,6 +103,6 @@ public class MainActivity extends AppCompatActivity {
         String s = new String(msg.getRecords()[0].getPayload());
         nfcTagCode = s.substring(3);
 
-        textView.setText(nfcTagCode);                      // Sets the textview as the Text read from NFC TAG
+        nfcTextView.setText(nfcTagCode);                      // Sets the textview as the Text read from NFC TAG
     }
 }

@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="46dp"
-        android:id="@+id/button"
+        android:id="@+id/readNFCButton"
         android:layout_below="@+id/editText"
         android:layout_centerHorizontal="true" />
 
@@ -51,8 +51,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/button2"
         android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/button"
-        android:layout_alignStart="@+id/button" />
+        android:layout_alignLeft="@+id/readNFCButton"
+        android:layout_alignStart="@+id/readNFCButton" />
 
 </RelativeLayout>
 

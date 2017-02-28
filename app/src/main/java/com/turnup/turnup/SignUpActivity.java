@@ -57,8 +57,6 @@ public class SignUpActivity extends AppCompatActivity {
     public void SignUpMethod(View view)
     {
         System.out.println("Reached Here");
-        Intent mainIntent = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(mainIntent);
         studentEmailIdString = studentEmailIdEditText.getText().toString();
         passwordString = passwordEditText.getText().toString();
         studentIdString = studentIdEditText.getText().toString();
@@ -69,6 +67,8 @@ public class SignUpActivity extends AppCompatActivity {
         lastNameString = lastNameEditText.getText().toString();
 
         UserRegistration();
+        Intent logInScreenIntent = new Intent(getApplicationContext(), loginActivity.class);
+        startActivity(logInScreenIntent);
     }
 
 

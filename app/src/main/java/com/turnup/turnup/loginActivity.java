@@ -38,7 +38,7 @@ public class loginActivity extends AppCompatActivity {
         String appVersion = "v1";
         Backendless.initApp(this, applicationKey, androidSecurityKey, androidServerVersion);
         //b1 is the loginButton b2 is sign up button
-        b1 = (Button) findViewById(R.id.button);
+        b1 = (Button) findViewById(R.id.readNFCButton);
         b2 = (Button) findViewById(R.id.button2);
 
         //Password is editText2, username is editText
@@ -57,7 +57,8 @@ public class loginActivity extends AppCompatActivity {
                     //Successful login will execute this
                     public void handleResponse(BackendlessUser response) {
                         Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
-
+                        Intent mainActivityIntent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(mainActivityIntent);
                     }
 
                     @Override
