@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.backendless.Backendless;
 import com.backendless.BackendlessUser;
@@ -26,6 +28,8 @@ public class SignUpActivity extends AppCompatActivity {
 
     public EditText firstNameEditText, lastNameEditText, studentIdEditText, studentEmailIdEditText,
             studentCardIdEditText, passwordEditText, courseNameEditText, courseLevelEditText;
+
+    public Spinner courseNameSpinner, levelSpinner;
 
     public String firstNameString, lastNameString, studentIdString, studentEmailIdString,
             studentCardIdString, passwordString, courseNameString, courseLevelString;
@@ -48,12 +52,22 @@ public class SignUpActivity extends AppCompatActivity {
         studentCardIdEditText = (EditText) findViewById(R.id.studentCardIdEditText);
         passwordEditText = (EditText) findViewById(R.id.passwordEditText);
         signUpButton = (Button) findViewById(R.id.signUpButton);
-        courseNameEditText = (EditText) findViewById(R.id.courseNameEditText);
-        courseLevelEditText = (EditText) findViewById(R.id.courseLevelEditText);
+
+        courseNameSpinner = (Spinner)findViewById(R.id.courseNameSpinner);
+        levelSpinner = (Spinner)findViewById(R.id.levelSpinner);
+
+        String[] courseNameItems = new String[]{"Computer Science"};
+        ArrayAdapter<String> courseNameAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, courseNameItems);
+        courseNameSpinner.setAdapter(courseNameAdapter);
+
+        String[] levelItems = new String[]{"Level 1", "Level 2", "Level 3"};
+        ArrayAdapter<String> levelAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, levelItems);
+        levelSpinner.setAdapter(levelAdapter);
 
         //UserRegistration();
     }
 
+    // Executes when Sign Up button is clicked
     public void SignUpMethod(View view)
     {
         System.out.println("Reached Here");
@@ -61,14 +75,20 @@ public class SignUpActivity extends AppCompatActivity {
         passwordString = passwordEditText.getText().toString();
         studentIdString = studentIdEditText.getText().toString();
         studentCardIdString = studentCardIdEditText.getText().toString();
-        courseNameString = courseNameEditText.getText().toString();
-        courseLevelString = courseLevelEditText.getText().toString();
+        courseNameString = courseNameSpinner.getSelectedItem().toString();
+        courseLevelString = levelSpinner.getSelectedItem().toString();
         firstNameString = firstNameEditText.getText().toString();
         lastNameString = lastNameEditText.getText().toString();
 
         UserRegistration();
         Intent logInScreenIntent = new Intent(getApplicationContext(), loginActivity.class);
         startActivity(logInScreenIntent);
+    }
+
+    // Executes when Log In button is clicked
+    public void LogInMethod(View view) {
+        Intent logInActivityIntent = new Intent(getApplicationContext(), loginActivity.class);
+        startActivity(logInActivityIntent);
     }
 
 
