@@ -70,7 +70,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void clicked(View view){
 
+        if(nfcTagCode == null)
+        {
+            Toast.makeText(getApplicationContext(), "NFC chip was not detected", Toast.LENGTH_SHORT).show();
+        }
+
         Log.i("test",nfcTagCode);               // Printing NFC TAG Code for Verification when button is clicked
+        Toast.makeText(getApplicationContext(), nfcTagCode, Toast.LENGTH_SHORT).show();
     }
 
     public void settingsButton(View view){
@@ -82,8 +88,8 @@ public class MainActivity extends AppCompatActivity {
     }
     public void timeTableButton(View view){
         Toast.makeText(getApplicationContext(), "Work in progress for TimeTable Screen", Toast.LENGTH_SHORT).show();
-        Intent timeTableActivityIntent = new Intent(getApplicationContext(), TimetableActivity.class);
-        startActivity(timeTableActivityIntent);
+//        Intent timeTableActivityIntent = new Intent(getApplicationContext(), TimetableActivity.class);
+//        startActivity(timeTableActivityIntent);
     }
 
 

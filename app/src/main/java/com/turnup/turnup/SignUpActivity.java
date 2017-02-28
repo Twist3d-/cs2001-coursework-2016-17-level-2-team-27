@@ -27,7 +27,7 @@ public class SignUpActivity extends AppCompatActivity {
     // Variables for storing the user information
 
     public EditText firstNameEditText, lastNameEditText, studentIdEditText, studentEmailIdEditText,
-            studentCardIdEditText, passwordEditText, courseNameEditText, courseLevelEditText;
+            studentCardIdEditText, passwordEditText;
 
     public Spinner courseNameSpinner, levelSpinner;
 
