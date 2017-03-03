@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     String nfcTagCode;                  // String to store NFC Tag Code
     NfcAdapter mNfcAdapter;             // Initializing NFC Adapter
 
-    GestureDetectorCompat gestureObject;    // Initializing Gesture Detector to detect swipes
+    private GestureDetectorCompat gestureObject;    // Initializing Gesture Detector to detect swipes
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

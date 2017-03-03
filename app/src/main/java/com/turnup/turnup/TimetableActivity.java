@@ -4,10 +4,14 @@ package com.turnup.turnup;
  * Created by Taqi on 2/26/2017.
  */
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.GestureDetector;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -24,9 +28,13 @@ public class TimetableActivity extends AppCompatActivity {
 //    private String moduleNo;
 //    private String chipNo;
 
+    private GestureDetectorCompat gestureObject;    // Initializing Gesture Detector to detect swipes
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timetable);
+
+        gestureObject = new GestureDetectorCompat(this, new LearnGesture());    // Gesture Detector for swipe detection
 
         init();
     }
@@ -124,6 +132,38 @@ public class TimetableActivity extends AppCompatActivity {
             t4v.setGravity(Gravity.CENTER);
             tbrow.addView(t4v);
             stk.addView(tbrow);
+        }
+    }
+
+    //-------------------------Swipe Detection---------------------------------
+
+    // This method detects Motion and touch events
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        this.gestureObject.onTouchEvent(event);
+        return super.onTouchEvent(event);
+    }
+
+    // This is executed when gesture or motion is detected
+    class LearnGesture extends GestureDetector.SimpleOnGestureListener{
+
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+
+            if(e2.getX() > e1.getX()){
+
+                // This Code executes Swipe From Left to Right
+                // Opens History Screen
+                Intent mainActivityIntent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(mainActivityIntent);
+
+            }
+            else if (e2.getX() < e1.getX()){
+
+                // This Code executes Swipe From Right to Left
+                // No Code required here, as we dont have any activty to open
+            }
+            return true;
         }
     }
 }
