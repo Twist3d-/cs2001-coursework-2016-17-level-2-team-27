@@ -153,7 +153,7 @@ public class TimetableActivity extends AppCompatActivity {
             if(e2.getX() > e1.getX()){
 
                 // This Code executes Swipe From Left to Right
-                // Opens History Screen
+                // Opens Main Screen
                 Intent mainActivityIntent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(mainActivityIntent);
 
