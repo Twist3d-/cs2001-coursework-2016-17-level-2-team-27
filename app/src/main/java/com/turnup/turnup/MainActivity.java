@@ -4,9 +4,12 @@ import android.content.Intent;
 import android.nfc.NdefMessage;
 import android.nfc.NfcAdapter;
 import android.os.Parcelable;
+import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -23,8 +26,6 @@ public class MainActivity extends AppCompatActivity {
 
     // Initializing Button
     Button readNfcButton;
-    Button timeTableButton;
-    Button historyButton;
     Button settingsButton;
 
     TextView nfcTextView;                  // Initializing TextView
@@ -34,16 +35,18 @@ public class MainActivity extends AppCompatActivity {
     String nfcTagCode;                  // String to store NFC Tag Code
     NfcAdapter mNfcAdapter;             // Initializing NFC Adapter
 
+    GestureDetectorCompat gestureObject;    // Initializing Gesture Detector to detect swipes
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        gestureObject = new GestureDetectorCompat(this, new LearnGesture());    // Gesture Detector for swipe detection
+
         //------------------------------------------------
 
         readNfcButton = (Button) findViewById(R.id.readNFCButton);  // Textview to read String from NFC, to test if the NFC is Working or not
-        timeTableButton = (Button) findViewById(R.id.timeTableButton);
-        historyButton = (Button) findViewById(R.id.historyButton);
         settingsButton = (Button) findViewById(R.id.settingsButton);
         nfcTextView = (TextView) findViewById(R.id.nfcTextView);
         //-------------------------------------------------
@@ -83,14 +86,6 @@ public class MainActivity extends AppCompatActivity {
         Intent settingsActivityIntent = new Intent(getApplicationContext(), SettingsActivity.class);
         startActivity(settingsActivityIntent);
     }
-    public void historyButton(View view){
-        Toast.makeText(getApplicationContext(), "Work in progress for History Screen", Toast.LENGTH_SHORT).show();
-    }
-    public void timeTableButton(View view){
-        Toast.makeText(getApplicationContext(), "Work in progress for TimeTable Screen", Toast.LENGTH_SHORT).show();
-        Intent timeTableActivityIntent = new Intent(getApplicationContext(), TimetableActivity.class);
-        startActivity(timeTableActivityIntent);
-    }
 
 
     //---------------------------------------------------------
@@ -126,5 +121,41 @@ public class MainActivity extends AppCompatActivity {
         nfcTagCode = s.substring(3);
 
         nfcTextView.setText(nfcTagCode);                      // Sets the textview as the Text read from NFC TAG
+    }
+
+
+    //-------------------------Swipe Detection---------------------------------
+
+    // This method detects Motion and touch events
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        this.gestureObject.onTouchEvent(event);
+        return super.onTouchEvent(event);
+    }
+
+    // This is executed when gesture or motion is detected
+    class LearnGesture extends GestureDetector.SimpleOnGestureListener{
+
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+
+            if(e2.getX() > e1.getX()){
+
+                // This Code executes Swipe From Left to Right
+                // Opens History Screen
+                Intent historyActivityIntent = new Intent(getApplicationContext(), HistoryActivity.class);
+                startActivity(historyActivityIntent);
+
+            }
+            else if (e2.getX() < e1.getX()){
+
+                // This Code executes Swipe From Right to Left
+                // Opens TimeTable Screen
+                Intent timeTableActivityIntent = new Intent(getApplicationContext(), TimetableActivity.class);
+                startActivity(timeTableActivityIntent);
+
+            }
+            return true;
+        }
     }
 }
