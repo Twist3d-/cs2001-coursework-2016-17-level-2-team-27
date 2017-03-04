@@ -132,6 +132,54 @@ public class MainActivity extends AppCompatActivity {
         nfcTextView.setText(nfcTagCode);                      // Sets the textview as the Text read from NFC TAG
     }
 
+    //This Method Checks if one checkbox is ticked, Other checkbox will be unticked
+    public void onCheckBoxClicked(View view){
+
+        switch(view.getId()) {
+            case R.id.checkBoxCs2001:
+                if (true)
+                    checkBoxCs2002.setChecked(false);
+                    checkBoxCs2003.setChecked(false);
+                    checkBoxCs2004.setChecked(false);
+                    checkBoxCs2005.setChecked(false);
+                break;
+
+            case R.id.checkBoxCs2002:
+                if (true)
+                    checkBoxCs2001.setChecked(false);
+                    checkBoxCs2003.setChecked(false);
+                    checkBoxCs2004.setChecked(false);
+                    checkBoxCs2005.setChecked(false);
+                break;
+
+            case R.id.checkBoxCs2003:
+                if (true)
+                    checkBoxCs2001.setChecked(false);
+                    checkBoxCs2002.setChecked(false);
+                    checkBoxCs2004.setChecked(false);
+                    checkBoxCs2005.setChecked(false);
+                break;
+
+            case R.id.checkBoxCs2004:
+                if (true)
+                    checkBoxCs2001.setChecked(false);
+                    checkBoxCs2002.setChecked(false);
+                    checkBoxCs2003.setChecked(false);
+                    checkBoxCs2005.setChecked(false);
+                break;
+
+            case R.id.checkBoxCs2005:
+                if (true)
+                    checkBoxCs2001.setChecked(false);
+                    checkBoxCs2002.setChecked(false);
+                    checkBoxCs2003.setChecked(false);
+                    checkBoxCs2004.setChecked(false);
+                break;
+
+        }
+
+    }
+
 
     //-------------------------Swipe Detection---------------------------------
 

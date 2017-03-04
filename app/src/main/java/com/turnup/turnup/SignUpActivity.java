@@ -60,7 +60,7 @@ public class SignUpActivity extends AppCompatActivity {
         ArrayAdapter<String> courseNameAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, courseNameItems);
         courseNameSpinner.setAdapter(courseNameAdapter);
 
-        String[] levelItems = new String[]{"Level 1", "Level 2", "Level 3"};
+        String[] levelItems = new String[]{"Level 2"};
         ArrayAdapter<String> levelAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, levelItems);
         levelSpinner.setAdapter(levelAdapter);
 
