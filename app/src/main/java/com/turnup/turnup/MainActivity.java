@@ -13,6 +13,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -28,8 +29,14 @@ public class MainActivity extends AppCompatActivity {
     Button readNfcButton;
     Button settingsButton;
 
+    // Initializing Checkboxes
+    CheckBox checkBoxCs2001;
+    CheckBox checkBoxCs2002;
+    CheckBox checkBoxCs2003;
+    CheckBox checkBoxCs2004;
+    CheckBox checkBoxCs2005;
+
     TextView nfcTextView;                  // Initializing TextView
-    ListView moduleListView;            // Initializing ListView to display upcoming modules lectures
     ImageView brunelLogoImageView;      // Initializing ImageView for Brunel University Logo
 
     String nfcTagCode;                  // String to store NFC Tag Code
@@ -51,21 +58,22 @@ public class MainActivity extends AppCompatActivity {
         nfcTextView = (TextView) findViewById(R.id.nfcTextView);
         //-------------------------------------------------
 
-        moduleListView = (ListView) findViewById(R.id.moduleListView);
+        //Checkboxes
+
+        checkBoxCs2001 = (CheckBox) findViewById(R.id.checkBoxCs2001);
+        checkBoxCs2002 = (CheckBox) findViewById(R.id.checkBoxCs2002);
+        checkBoxCs2003 = (CheckBox) findViewById(R.id.checkBoxCs2003);
+        checkBoxCs2004 = (CheckBox) findViewById(R.id.checkBoxCs2004);
+        checkBoxCs2005 = (CheckBox) findViewById(R.id.checkBoxCs2005);
+
+        //-------------------------------------------------
+
         brunelLogoImageView = (ImageView) findViewById(R.id.brunelLogoImageView);
         mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
 
 
         //------------------------------------------------
-        //Demo Array List to add module to ListView for testing
-        ArrayAdapter<String> arrayAdapter;
-        ArrayList<String> moduleList = new ArrayList<String>();
-        moduleList.add("CS2001\n" + "05-Feb-2017, 01:00 PM - 02:00 PM");
-        moduleList.add("CS2002\n" + "05-Feb-2017, 02:00 PM - 03:00 PM");
-        moduleList.add("CS2003\n" + "05-Feb-2017, 03:00 PM - 04:00 PM");
-        moduleList.add("CS2004\n" + "05-Feb-2017, 04:00 PM - 05:00 PM");
-        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, moduleList);
-        moduleListView.setAdapter(arrayAdapter);
+
 
         // Calling testNFC Method to test if NFC is Enabled or Disabled
         testNFC();
@@ -77,9 +85,10 @@ public class MainActivity extends AppCompatActivity {
         {
             Toast.makeText(getApplicationContext(), "NFC chip was not detected", Toast.LENGTH_SHORT).show();
         }
-
-        Log.i("test",nfcTagCode);               // Printing NFC TAG Code for Verification when button is clicked
-        Toast.makeText(getApplicationContext(), nfcTagCode, Toast.LENGTH_SHORT).show();
+        else {
+            Log.i("test", nfcTagCode);               // Printing NFC TAG Code for Verification when button is clicked
+            Toast.makeText(getApplicationContext(), nfcTagCode, Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void settingsButton(View view){

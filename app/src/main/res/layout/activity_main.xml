@@ -10,8 +10,59 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.turnup.turnup.MainActivity">
+    tools:context="com.turnup.turnup.MainActivity"
+    android:gravity="center">
     <!-- github test -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_alignTop="@+id/imageView"
+        android:layout_marginTop="100dp"
+        android:layout_width="200dp"
+        android:layout_height="300dp"
+        android:layout_centerHorizontal="true">
+
+        <CheckBox
+            android:text="CS2001"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="50dp"
+            android:id="@+id/checkBoxCs2001"
+            android:layout_height="60dp"
+            android:textSize="18sp" />
+
+        <CheckBox
+            android:text="CS2002"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="50dp"
+            android:id="@+id/checkBoxCs2002"
+            android:textSize="18sp" />
+
+        <CheckBox
+            android:text="CS2003"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="50dp"
+            android:id="@+id/checkBoxCs2003"
+            android:textSize="18sp" />
+
+        <CheckBox
+            android:text="CS2004"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="50dp"
+            android:id="@+id/checkBoxCs2004"
+            android:textSize="18sp" />
+
+        <CheckBox
+            android:text="CS2005"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="50dp"
+            android:id="@+id/checkBoxCs2005"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
     <TextView
         android:text="TextView"
         android:layout_width="wrap_content"
@@ -29,13 +80,6 @@
         android:layout_margin="10dp"
         android:id="@+id/brunelLogoImageView" />
 
-    <ListView
-        android:layout_alignTop="@+id/imageView"
-        android:layout_marginTop="100dp"
-        android:layout_width="200dp"
-        android:layout_height="300dp"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/moduleListView"/>
 
     <Button
         android:text="Read NFC"
