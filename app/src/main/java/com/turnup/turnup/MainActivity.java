@@ -19,11 +19,17 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.backendless.Backendless;
+import com.backendless.BackendlessCollection;
+import com.backendless.async.callback.AsyncCallback;
+import com.backendless.exceptions.BackendlessFault;
 import com.backendless.persistence.BackendlessDataQuery;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -85,6 +91,40 @@ public class MainActivity extends AppCompatActivity {
         testNFC();
     }
 
+    public void verifyUsersPlace(){
+
+        String whereClause = "chipNo = '" + nfcTagCode + "'" + " AND start <= '" + formattedCurrentTime + "' AND end > '" + formattedCurrentTime + "'";
+         //+ " and start >= " + formattedCurrentTime + "and end <= " + formattedCurrentTime
+        BackendlessDataQuery dataQuery = new BackendlessDataQuery();
+        dataQuery.setWhereClause( whereClause );
+
+        Backendless.Persistence.of( TimetableServer.class ).find( dataQuery,
+                new AsyncCallback<BackendlessCollection<TimetableServer>>(){
+                    @Override
+                    public void handleResponse( BackendlessCollection<TimetableServer> foundData ) {
+
+                        List<TimetableServer> similarData = foundData.getData();
+                        for (int i = 0; i < similarData.size(); i++)
+                        {
+
+                            Log.i("Time", similarData.get(i).getChipNo());
+                            Log.i("Time", similarData.get(i).getModuleNo());
+                            Log.i("Time", similarData.get(i).getRoom());
+                            Log.i("Time", similarData.get(i).getStart().toString());
+                            Log.i("Time", similarData.get(i).getEnd().toString());
+                            Log.i("Time", "Current Time = "+ formattedCurrentTime);
+                        }
+                    }
+                    @Override
+                    public void handleFault( BackendlessFault fault )
+                    {
+                        // an error has occurred, the error code can be retrieved with fault.getCode()
+                        Log.i("Time", "Fault - " + fault);
+                    }
+                });
+
+    }
+
     public void clicked(View view){
 
         if(nfcTagCode == null)
@@ -124,6 +164,7 @@ public class MainActivity extends AppCompatActivity {
         if (NfcAdapter.ACTION_NDEF_DISCOVERED.equals(getIntent().getAction())) {
             processIntent(getIntent());     // If NDEF is discovered, It calls prcoessIntent method to get the NFC TAG Code
             getCurrentTime();
+            verifyUsersPlace();
         }
     }
 
@@ -138,6 +179,7 @@ public class MainActivity extends AppCompatActivity {
         // Getting Current Time in the above format
         formattedCurrentTime = currentTimeFormat.format(currentTime.getTime());
         Toast.makeText(getApplicationContext(), formattedCurrentTime, Toast.LENGTH_SHORT).show();
+
     }
 
     //---------------------------------------------------------
