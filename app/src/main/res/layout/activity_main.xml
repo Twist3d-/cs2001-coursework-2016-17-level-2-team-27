@@ -15,7 +15,7 @@
     <!-- github test -->
     <LinearLayout
         android:orientation="vertical"
-        android:layout_alignTop="@+id/imageView"
+        android:layout_alignTop="@+id/brunelLogoImageView"
         android:layout_marginTop="100dp"
         android:layout_width="200dp"
         android:layout_height="300dp"

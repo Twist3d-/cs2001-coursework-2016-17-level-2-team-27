@@ -1,5 +1,7 @@
 package com.turnup.turnup;
 
+import java.util.Date;
+
 /**
  * Created by SHREYAS on 27-Feb-17.
  */
@@ -9,24 +11,24 @@ package com.turnup.turnup;
 public class AttendanceListServer
 {
     private String name, level, studentid, email, cardid, coursename, room, moduleNo;
+    private Date start, end, attendedTime;
 
-    private int start, end, attendedTime;
 
-    public int getStart() {
+    public Date getStart() {
     return start;
 }
     public void setStart( String startString ) {
         this.start = start;
     }
 
-    public int getEnd() {
+    public Date getEnd() {
         return end;
     }
     public void setEnd( String endString ) {
         this.end = end;
     }
 
-    public int getAttendedTime() {
+    public Date getAttendedTime() {
         return attendedTime;
     }
     public void setAttendedTime( String attendedTimeString ) {

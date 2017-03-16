@@ -19,7 +19,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.backendless.persistence.BackendlessDataQuery;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
 
     String nfcTagCode;                  // String to store NFC Tag Code
     NfcAdapter mNfcAdapter;             // Initializing NFC Adapter
+
+    String formattedCurrentTime;        // To store current time
 
     private GestureDetectorCompat gestureObject;    // Initializing Gesture Detector to detect swipes
 
@@ -114,10 +120,24 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        // Check if there is any any NDEF is discovered to process the TAG
+        // Check if there is any any NDEF discovered to process the TAG
         if (NfcAdapter.ACTION_NDEF_DISCOVERED.equals(getIntent().getAction())) {
             processIntent(getIntent());     // If NDEF is discovered, It calls prcoessIntent method to get the NFC TAG Code
+            getCurrentTime();
         }
+    }
+
+
+    // This method gets the current time when the phone was Tapped on NFC Chip
+    public void getCurrentTime(){
+
+        Calendar currentTime = Calendar.getInstance();
+
+        // Calendar Format for Current Time
+        SimpleDateFormat currentTimeFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+        // Getting Current Time in the above format
+        formattedCurrentTime = currentTimeFormat.format(currentTime.getTime());
+        Toast.makeText(getApplicationContext(), formattedCurrentTime, Toast.LENGTH_SHORT).show();
     }
 
     //---------------------------------------------------------

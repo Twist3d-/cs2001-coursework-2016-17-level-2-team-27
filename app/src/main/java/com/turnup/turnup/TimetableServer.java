@@ -1,5 +1,7 @@
 package com.turnup.turnup;
 
+import java.util.Date;
+
 /**
  * Created by SHREYAS on 27-Feb-17.
  */
@@ -8,17 +10,17 @@ package com.turnup.turnup;
 
 public class TimetableServer
 {
-    private int day;
+    private Date day;
     private String activity;
     private String description;
-    private int start;
-    private int end;
+    private Date start;
+    private Date end;
     private String room;
     private String staff;
     private String moduleNo;
     private String chipNo;
 
-    public int getDay() {
+    public Date getDay() {
         return day;
     }
     public void setDay( String dayString ) {
@@ -39,14 +41,14 @@ public class TimetableServer
         this.description = description;
     }
 
-    public int getStart() {
+    public Date getStart() {
         return start;
     }
     public void setStart( String startString ) {
         this.start = start;
     }
 
-    public int getEnd() {
+    public Date getEnd() {
         return end;
     }
     public void setEnd( String endString ) {
