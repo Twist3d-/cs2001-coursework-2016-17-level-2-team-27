@@ -21,19 +21,27 @@ import android.widget.Toast;
 
 import com.backendless.Backendless;
 import com.backendless.BackendlessCollection;
+import com.backendless.BackendlessUser;
+import com.backendless.UserService;
 import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
 import com.backendless.persistence.BackendlessDataQuery;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     // Initializing all the variables Needed
+
+    String studentID, cardID, email, courseName, level, name, attendedTimeString;
+    String chipNo, moduleNo, room;
+    Date start,end, attendedTime;
 
     // Initializing Button
     Button readNfcButton;
@@ -46,13 +54,11 @@ public class MainActivity extends AppCompatActivity {
     CheckBox checkBoxCs2004;
     CheckBox checkBoxCs2005;
 
-    TextView nfcTextView;                  // Initializing TextView
-    ImageView brunelLogoImageView;      // Initializing ImageView for Brunel University Logo
+    TextView nfcTextView;                // Initializing TextView
+    ImageView brunelLogoImageView;       // Initializing ImageView for Brunel University Logo
 
-    String nfcTagCode;                  // String to store NFC Tag Code
-    NfcAdapter mNfcAdapter;             // Initializing NFC Adapter
-
-    String formattedCurrentTime;        // To store current time
+    String nfcTagCode;                   // String to store NFC Tag Code
+    NfcAdapter mNfcAdapter;              // Initializing NFC Adapter
 
     private GestureDetectorCompat gestureObject;    // Initializing Gesture Detector to detect swipes
 
@@ -86,43 +92,94 @@ public class MainActivity extends AppCompatActivity {
 
         //------------------------------------------------
 
-
         // Calling testNFC Method to test if NFC is Enabled or Disabled
         testNFC();
     }
 
-    public void verifyUsersPlace(){
+    // This Method Verifies the chip no and start and end time, and then retrieves the lecture data
+    public void verifyUsersPlace() {
 
-        String whereClause = "chipNo = '" + nfcTagCode + "'" + " AND start <= '" + formattedCurrentTime + "' AND end > '" + formattedCurrentTime + "'";
-         //+ " and start >= " + formattedCurrentTime + "and end <= " + formattedCurrentTime
+        String whereClause = "chipNo = '" + nfcTagCode + "'" + " AND start <= '" + attendedTime + "' AND end > '" + attendedTime + "'";
+        //+ " and start >= " + formattedCurrentTime + "and end <= " + formattedCurrentTime
         BackendlessDataQuery dataQuery = new BackendlessDataQuery();
-        dataQuery.setWhereClause( whereClause );
+        dataQuery.setWhereClause(whereClause);
 
-        Backendless.Persistence.of( TimetableServer.class ).find( dataQuery,
-                new AsyncCallback<BackendlessCollection<TimetableServer>>(){
+        Backendless.Persistence.of(TimetableServer.class).find(dataQuery,
+                new AsyncCallback<BackendlessCollection<TimetableServer>>() {
                     @Override
-                    public void handleResponse( BackendlessCollection<TimetableServer> foundData ) {
+                    public void handleResponse(BackendlessCollection<TimetableServer> foundData) {
 
                         List<TimetableServer> similarData = foundData.getData();
-                        for (int i = 0; i < similarData.size(); i++)
-                        {
-
+                        for (int i = 0; i < similarData.size(); i++) {
                             Log.i("Time", similarData.get(i).getChipNo());
                             Log.i("Time", similarData.get(i).getModuleNo());
                             Log.i("Time", similarData.get(i).getRoom());
                             Log.i("Time", similarData.get(i).getStart().toString());
                             Log.i("Time", similarData.get(i).getEnd().toString());
-                            Log.i("Time", "Current Time = "+ formattedCurrentTime);
+                            Log.i("Time", "Current Time = " + attendedTime);
+
+                            //Getting Module details
+                            chipNo = similarData.get(i).getChipNo();
+                            moduleNo = similarData.get(i).getModuleNo();
+                            room = similarData.get(i).getRoom();
+                            start = similarData.get(i).getStart();
+                            end = similarData.get(i).getEnd();
+
                         }
                     }
+
                     @Override
-                    public void handleFault( BackendlessFault fault )
-                    {
+                    public void handleFault(BackendlessFault fault) {
                         // an error has occurred, the error code can be retrieved with fault.getCode()
                         Log.i("Time", "Fault - " + fault);
                     }
                 });
 
+    }
+
+    // This Method registers User by saving all user and lecture data to AttendanceListServer Page in server
+    public void registerUser(){
+
+
+        // Getting User details from Users page in server
+
+        studentID = Backendless.UserService.CurrentUser().getProperty("studentID").toString();
+        cardID = Backendless.UserService.CurrentUser().getProperty("cardID").toString();
+        email = Backendless.UserService.CurrentUser().getEmail();
+        courseName = Backendless.UserService.CurrentUser().getProperty("courseName").toString();
+        level = Backendless.UserService.CurrentUser().getProperty("level").toString();
+        name = Backendless.UserService.CurrentUser().getProperty("name").toString();
+
+        // Printing all the above details to test
+        //Log.i("Time","Current User - " + studentID + " " + cardID + " " + email + " " + courseName + " " + level + " " + name );
+
+        AttendanceListServer attendanceListServer = new AttendanceListServer();
+
+        // Sets all the values in AttendanceListServer page in server, which means student attended the lecture
+
+        attendanceListServer.setStudentID(studentID);
+        attendanceListServer.setCardID(cardID);
+        attendanceListServer.setEmail(email);
+        attendanceListServer.setCourseName(courseName);
+        attendanceListServer.setLevel(level);
+        attendanceListServer.setName(name);
+        attendanceListServer.setRoom(room);
+        attendanceListServer.setChipNo(chipNo);
+        attendanceListServer.setStart(start);
+        attendanceListServer.setEnd(end);
+        attendanceListServer.setAttendedTime(attendedTime);
+
+        Backendless.Persistence.save( attendanceListServer, new AsyncCallback<AttendanceListServer>() {
+            public void handleResponse( AttendanceListServer response )
+            {
+                Toast.makeText(getApplicationContext(), "Registered Successfully", Toast.LENGTH_SHORT).show();
+            }
+
+            public void handleFault( BackendlessFault fault )
+            {
+                Log.i("Time", fault.toString());
+            }
+        });
     }
 
     public void clicked(View view){
@@ -134,6 +191,12 @@ public class MainActivity extends AppCompatActivity {
         else {
             Log.i("test", nfcTagCode);               // Printing NFC TAG Code for Verification when button is clicked
             Toast.makeText(getApplicationContext(), nfcTagCode, Toast.LENGTH_SHORT).show();
+
+            // Once the button is clicked if verifies if user is in correct room and retrieves all the information of User from server
+            verifyUsersPlace();
+
+            // Once the information is retrieved, this stores all the data (Student Details and Lecture details) to AttendanceListServer page in server
+            registerUser();
         }
     }
 
@@ -164,7 +227,6 @@ public class MainActivity extends AppCompatActivity {
         if (NfcAdapter.ACTION_NDEF_DISCOVERED.equals(getIntent().getAction())) {
             processIntent(getIntent());     // If NDEF is discovered, It calls prcoessIntent method to get the NFC TAG Code
             getCurrentTime();
-            verifyUsersPlace();
         }
     }
 
@@ -177,8 +239,13 @@ public class MainActivity extends AppCompatActivity {
         // Calendar Format for Current Time
         SimpleDateFormat currentTimeFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
         // Getting Current Time in the above format
-        formattedCurrentTime = currentTimeFormat.format(currentTime.getTime());
-        Toast.makeText(getApplicationContext(), formattedCurrentTime, Toast.LENGTH_SHORT).show();
+        attendedTimeString = currentTimeFormat.format(currentTime.getTime());
+        try {
+            Date attendedTime = currentTimeFormat.parse(attendedTimeString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Toast.makeText(getApplicationContext(), attendedTimeString, Toast.LENGTH_SHORT).show();
 
     }
 
