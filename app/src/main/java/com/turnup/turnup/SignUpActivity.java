@@ -108,13 +108,17 @@ public class SignUpActivity extends AppCompatActivity {
         BackendlessUser user = new BackendlessUser();   // Creating Backendless user.
 
         //---------Storing User entered data to server in "Users" Page-------------
-        user.setProperty(email, studentEmailIdString);
+
+        //user.setProperty(email, studentEmailIdString);
+        user.setEmail(studentEmailIdString);
         user.setPassword(passwordString);
         user.setProperty(studentID, studentIdString);
         user.setProperty(cardID, studentCardIdString);
         user.setProperty(courseName, courseNameString);
         user.setProperty(level, courseLevelString);
         user.setProperty(name, firstNameString + lastNameString);
+
+
         //-------------------------------------------------------------------------
 
 

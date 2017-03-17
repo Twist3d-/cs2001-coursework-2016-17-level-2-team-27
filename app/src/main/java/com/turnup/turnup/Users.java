@@ -16,7 +16,7 @@ public class Users
         return email;
     }
 
-    public void setEmail( String studentEmailIdString ) {
+    public void setEmail( String email ) {
         this.email = email;
     }
     //------------------------------------
@@ -25,7 +25,7 @@ public class Users
         return password;
     }
 
-    public void setPassword(String passwordString) {
+    public void setPassword(String password) {
         this.password = password;
     }
     //------------------------------------
@@ -34,7 +34,7 @@ public class Users
         return studentid;
     }
 
-    public void setStudentID(String studentIdString){
+    public void setStudentID(String studentid){
         this.studentid = studentid;
     }
     //------------------------------------
@@ -43,7 +43,7 @@ public class Users
         return cardid;
     }
 
-    public void setCardID(String studentCardIdString){
+    public void setCardID(String cardid){
         this.cardid = cardid;
     }
     //------------------------------------
@@ -52,7 +52,7 @@ public class Users
         return coursename;
     }
 
-    public void setCourseName(String courseNameString){
+    public void setCourseName(String coursename){
         this.coursename = coursename;
     }
     //------------------------------------
@@ -61,7 +61,7 @@ public class Users
         return level;
     }
 
-    public void setLevel(String courseLevelString){
+    public void setLevel(String level){
         this.level = level;
     }
     //------------------------------------
@@ -70,7 +70,7 @@ public class Users
         return modulecodes;
     }
 
-    public void setModuleCodes(String passwordString){
+    public void setModuleCodes(String modulecodes){
         this.modulecodes = modulecodes;
     }
     //------------------------------------
@@ -79,7 +79,7 @@ public class Users
         return name;
     }
 
-    public void setName(String studentNameString){
+    public void setName(String name){
         this.name = name;
     }
 

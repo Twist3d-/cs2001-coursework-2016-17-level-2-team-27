@@ -10,7 +10,6 @@ import java.util.Date;
 
 public class TimetableServer
 {
-    private Date day;
     private String activity;
     private String description;
     private Date start;
@@ -20,66 +19,60 @@ public class TimetableServer
     private String moduleNo;
     private String chipNo;
 
-    public Date getDay() {
-        return day;
-    }
-    public void setDay( String dayString ) {
-        this.day = day;
-    }
 
     public String getActivity() {
         return activity;
     }
-    public void setActivity( String activityString ) {
+    public void setActivity( String activity ) {
         this.activity = activity;
     }
 
     public String getDescription() {
         return description;
     }
-    public void setDescription( String descriptionString ) {
+    public void setDescription( String description ) {
         this.description = description;
     }
 
     public Date getStart() {
         return start;
     }
-    public void setStart( String startString ) {
+    public void setStart( Date start ) {
         this.start = start;
     }
 
     public Date getEnd() {
         return end;
     }
-    public void setEnd( String endString ) {
+    public void setEnd( Date end ) {
         this.end = end;
     }
 
     public String getRoom() {
         return room;
     }
-    public void setRoom( String roomString ) {
+    public void setRoom( String room ) {
         this.room = room;
     }
 
     public String getStaff() {
         return staff;
     }
-    public void setStaff( String staffString ) {
+    public void setStaff( String staff ) {
         this.staff = staff;
     }
 
     public String getModuleNo() {
         return moduleNo;
     }
-    public void setModuleNo( String moduleNoString ) {
+    public void setModuleNo( String moduleNo ) {
         this.moduleNo = moduleNo;
     }
 
     public String getChipNo() {
         return chipNo;
     }
-    public void setChipNo( String chipNoString ) {
+    public void setChipNo( String chipNo ) {
         this.chipNo = chipNo;
     }
 }
